@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>WorkerCanvas: Many Workers, Many Canvses</title>
+
+  <style>
+    canvas { float: left; }
+  </style>
+    
+  </head>
+  <body id="body">
+
+<script>
+var canvases = [];
+
+function pushCanvas() {
+  var cvs = document.createElement("canvas");
+  cvs.width = cvs.height = 300;
+  document.getElementById("body").appendChild(cvs);
+  var worker = new Worker('worker.js');
+  var workerCanvas = cvs.transferControlToWorker();
+  worker.postMessage(workerCanvas);
+  canvases.push({canvas: cvs, worker: worker});
+  return false;
+}
+
+function popCanvas() {
+  var elem = canvases.pop();
+  document.getElementById("body").removeChild(elem.canvas);
+  elem.worker.terminate();
+  delete elem.worker;
+  return false;
+}
+</script>
+
+<p><a href="#" onclick="pushCanvas()">Add Canvas</a> -- <a href="#" onclick="popCanvas()">Remove Canvas</a></p>
+
+  </body>
+</html>

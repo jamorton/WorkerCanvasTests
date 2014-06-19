@@ -1,0 +1,32 @@
+<!--
+
+Uses regular (non-worker) webgl to test our drawing code as
+a reference
+
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>WorkerCanvas: Non-Worker Reference</title>
+    
+  </head>
+  <body>
+
+    <canvas id="cvs" width="500" height="500"></canvas>
+
+<script src="../common/gl-matrix.js"></script>
+<script src="../common/drawing.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+  var htmlCanvas = document.getElementById('cvs');
+  var scene = new SceneDrawer(htmlCanvas, 'triangle');
+  setInterval(scene.draw, 33);
+
+});
+</script>
+
+  </body>
+</html>

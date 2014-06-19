@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>WorkerCanvas: Basic Functionality Test</title>
+    
+  </head>
+  <body>
+
+    <canvas id="cvs" width="500" height="500"></canvas>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var worker = new Worker('worker.js');
+  var htmlCanvas = document.getElementById('cvs');
+  var workerCanvas = htmlCanvas.transferControlToWorker();
+
+  worker.onmessage = function(evt) {
+    console.log(evt.data);
+  };
+
+  worker.postMessage(workerCanvas);
+
+});
+</script>
+
+  </body>
+</html>
