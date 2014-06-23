@@ -13,7 +13,7 @@
     </style>
     
   </head>
-  <body id="body">
+  <body>
 
 <script>
 var canvases = [];
@@ -21,7 +21,7 @@ var canvases = [];
 function pushCanvas() {
   var cvs = document.createElement("canvas");
   cvs.width = cvs.height = 300;
-  document.getElementById("body").appendChild(cvs);
+  document.getElementById("container").appendChild(cvs);
   var worker = new Worker('worker.js');
   var workerCanvas = cvs.transferControlToWorker();
   worker.postMessage(workerCanvas);
@@ -31,7 +31,7 @@ function pushCanvas() {
 
 function popCanvas() {
   var elem = canvases.pop();
-  document.getElementById("body").removeChild(elem.canvas);
+  document.getElementById("container").removeChild(elem.canvas);
   elem.worker.terminate();
   delete elem.worker;
   return false;
@@ -58,6 +58,9 @@ function removeAll() {
   <a href="#" onclick="pushMany()">Add Many Worker Canvases</a>
   <a href="#" onclick="removeAll()">Remove All</a>
 </p>
+
+<div id="container">
+</div>
 
   </body>
 </html>
