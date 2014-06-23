@@ -5,9 +5,12 @@
     <meta charset="utf-8">
     <title>WorkerCanvas: Many Workers, Many Canvses</title>
 
-  <style>
-    canvas { float: left; }
-  </style>
+    <style>
+      canvas { float: left; }
+      p a { display: inline-block; padding: 8px; border: 1px solid #aaa; margin-left: 10px; font-family: Helvetica, sans-serif; font-weight: bold; }
+      p a, p a:active, p a:visited { text-decoration: none; color: #3077dd; }
+      p a:hover { background-color: #aaa; color: #333; }
+    </style>
     
   </head>
   <body id="body">
@@ -33,9 +36,28 @@ function popCanvas() {
   delete elem.worker;
   return false;
 }
+
+function pushMany() {
+  for (var i = 0; i < 8; i++) {
+    pushCanvas();
+  }
+  return false;
+}
+
+function removeAll() {
+  while (canvases.length) {
+    popCanvas();
+  }
+}
+
 </script>
 
-<p><a href="#" onclick="pushCanvas()">Add Canvas</a> -- <a href="#" onclick="popCanvas()">Remove Canvas</a></p>
+<p>
+  <a href="#" onclick="pushCanvas()">Add Worker Canvas</a>
+  <a href="#" onclick="popCanvas()">Remove Worker Canvas</a>
+  <a href="#" onclick="pushMany()">Add Many Worker Canvases</a>
+  <a href="#" onclick="removeAll()">Remove All</a>
+</p>
 
   </body>
 </html>
