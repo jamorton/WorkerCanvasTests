@@ -4,6 +4,8 @@ currently being tracked in [Mozilla Bug 709490](https://bugzilla.mozilla.org/sho
 
 WorkerCanvas aims to make WebGL available in WebWorkers for completely parallel graphics rendering.
 
+### Current tests
+
  * NoWorkers/index.html - Reference test that uses regular WebGL
  * Basic/index.html - Spawns one worker with webgl rendering
- * ManyWorkers/index.html - Controllable creating/deleting of many simultaneous workers
+ * ManyWorkers/index.html - Controllable creation and of many simultaneous workers
