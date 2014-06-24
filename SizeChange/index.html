@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>WorkerCanvas: Basic Functionality Test</title>
+    
+  </head>
+  <body>
+
+    <p>
+      <a href="#" onclick="incSize();">Increase Canvas Size</a> --
+      <a href="#" onclick="decSize();">Decrease Canvas Size</a>
+    </p>
+    
+    <canvas id="cvs" width="500" height="500"></canvas>
+
+<script>
+
+var worker;
+
+function incSize() {
+  worker.postMessage("incsize");
+  return false;
+}
+
+function decSize() {
+  worker.postMessage("decsize");
+  return false;
+}
+  
+document.addEventListener('DOMContentLoaded', function() {
+  worker = new Worker('worker.js');
+  var htmlCanvas = document.getElementById('cvs');
+  var workerCanvas = htmlCanvas.transferControlToWorker();
+
+  worker.postMessage(workerCanvas);
+});
+</script>
+    
+  </body>
+</html>

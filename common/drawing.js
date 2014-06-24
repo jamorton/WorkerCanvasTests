@@ -13,7 +13,7 @@ SceneDrawer = function(canvas, sceneName) {
 
     try {
         gl = canvas.getContext("webgl");
-        gl.viewport(0, 0, canvas.width, canvas.height);        
+        gl.viewport(0, 0, canvas.width, canvas.height);
     } catch (e) {
     }
 
@@ -108,6 +108,7 @@ SceneDrawer = function(canvas, sceneName) {
 
         return function() {
             gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+            gl.viewport(0, 0, canvas.width, canvas.height);
 
             mat4.perspective(pMatrix, 45, canvas.width / canvas.height, 0.1, 100.0);
             mat4.identity(mvMatrix);

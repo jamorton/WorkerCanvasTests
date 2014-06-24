@@ -9,3 +9,4 @@ WorkerCanvas aims to make WebGL available in WebWorkers for completely parallel 
  * NoWorkers/index.html - Reference test that uses regular WebGL
  * Basic/index.html - Spawns one worker with webgl rendering
  * ManyWorkers/index.html - Controllable creation and of many simultaneous workers
+ * SizeChange/index.html - Tests changing the canvas' size from a worker
